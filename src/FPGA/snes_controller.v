@@ -15,8 +15,8 @@ module snes_controller(
   output d2
 );
 
-shift_register_32 sr0(clk, lat, data0, d0);
-shift_register_32 sr1(clk, lat, data1, d1);
-shift_register_32 sr2(clk, lat, data2, d2);
+shift_register_32 sr0(clk, lat, data0, 1, d0);
+shift_register_32 sr1(clk, lat, data1, 1, d1);
+shift_register_32 sr2(clk, lat, data2, 1, d2);
 
 endmodule

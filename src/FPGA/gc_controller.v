@@ -17,7 +17,7 @@ enum { read, write } io_state;
 reg in_out_mode; // let 0 be input and 1 be output, arbitrarily 
 
 initial begin
-    in_out_mode = io_state.read; // start off listening for console commands
+    in_out_mode = io_state.read; // start off listening for commands from the console
 end
 
 shift_register_64 sr(clk, lat, data, d);
