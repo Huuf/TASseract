@@ -15,7 +15,7 @@ initial begin
 	transmitting = 1'b0;
 end
 
-always @(posedge trigger)
+always @(posedge trigger) begin
 	case(digit)
 		2'b01: // send a 1
 			// low for 1 us, then high for 3 us

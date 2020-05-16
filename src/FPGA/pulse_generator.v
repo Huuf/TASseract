@@ -12,7 +12,7 @@ initial begin
 	pulse = 1'b0;
 end
 
-always @(posedge trigger)
+always @(posedge trigger) begin
 	pulse <= 1'b1;
 	pulse <= #5 1'b0;
 end
@@ -28,7 +28,7 @@ initial begin
 	pulse = 1'b0;
 end
 
-always @(posedge trigger)
+always @(posedge trigger) begin
 	pulse <= 1'b1;
 	pulse <= #1 1'b0;
 end
@@ -44,7 +44,7 @@ initial begin
 	pulse = 1'b0;
 end
 
-always @(posedge trigger)
+always @(posedge trigger) begin
 	pulse <= 1'b1;
 	pulse <= #10 1'b0;
 end
