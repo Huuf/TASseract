@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name tasseract)(type Legacy)(uri ${KIPRJMOD}/lib/tasseract.lib)(options "")(descr ""))
+)
