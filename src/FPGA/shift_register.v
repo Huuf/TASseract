@@ -2,11 +2,11 @@
 // Many different bit-width shift registers
 
 module shift_register_8(
-  input clk,
-  input load, // latch
-  input [7:0] next_frame,
-  input overread,
-  output reg bit_out
+    input clk,
+    input load, // latch
+    input [7:0] next_frame,
+    input overread,
+    output reg bit_out
 );
 
 reg [7:0] bit_data;
@@ -30,11 +30,11 @@ end
 endmodule
 
 module shift_register_16(
-  input clk,
-  input load, // latch
-  input [15:0] next_frame,
-  input overread,
-  output reg bit_out
+    input clk,
+    input load, // latch
+    input [15:0] next_frame,
+    input overread,
+    output reg bit_out
 );
 
 reg [15:0] bit_data;
@@ -58,11 +58,11 @@ end
 endmodule
 
 module shift_register_32(
-  input clk,
-  input load, // latch
-  input [31:0] next_frame,
-  input overread,
-  output reg bit_out
+    input clk,
+    input load, // latch
+    input [31:0] next_frame,
+    input overread,
+    output reg bit_out
 );
 
 reg [31:0] bit_data; // 32 bits wide to support peripherals such as SNES mouse
@@ -86,11 +86,11 @@ end
 endmodule
 
 module shift_register_64(
-  input clk,
-  input load, // latch
-  input [63:0] next_frame,
-  input overread,
-  output reg bit_out
+    input clk,
+    input load, // latch
+    input [63:0] next_frame,
+    input overread,
+    output reg bit_out
 );
 
 reg [63:0] bit_data; // 32 bits wide to support gamecube data width
