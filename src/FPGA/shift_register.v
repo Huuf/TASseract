@@ -23,7 +23,7 @@ always @(posedge load or posedge clk) begin
     if(load) bit_data <= next_frame; // load
     else begin
         bit_data <= {bit_data[6:0], overread}; // lshift of 1. fill with overread as it empties.
-        bit_out <= bit_data[7] // highest bit that is getting "clocked out" will be stored in the output register
+        bit_out <= bit_data[7]; // highest bit that is getting "clocked out" will be stored in the output register
     end
 end
 
@@ -51,7 +51,7 @@ always @(posedge load or posedge clk) begin
     if(load) bit_data <= next_frame; // load
     else begin
         bit_data <= {bit_data[14:0], overread}; // lshift of 1. fill with overread as it empties.
-        bit_out <= bit_data[15] // highest bit that is getting "clocked out" will be stored in the output register
+        bit_out <= bit_data[15]; // highest bit that is getting "clocked out" will be stored in the output register
     end
 end
 
@@ -79,7 +79,7 @@ always @(posedge load or posedge clk) begin
     if(load) bit_data <= next_frame; // load
     else begin
         bit_data <= {bit_data[30:0], overread}; // lshift of 1. fill with overread as it empties.
-        bit_out <= bit_data[31] // highest bit that is getting "clocked out" will be stored in the output register
+        bit_out <= bit_data[31]; // highest bit that is getting "clocked out" will be stored in the output register
     end
 end
 
@@ -107,7 +107,7 @@ always @(posedge load or posedge clk) begin
     if(load) bit_data <= next_frame; // load
     else begin
         bit_data <= {bit_data[62:0], overread}; // lshift of 1. fill with overread as it empties.
-        bit_out <= bit_data[63] // highest bit that is getting "clocked out" will be stored in the output register
+        bit_out <= bit_data[63]; // highest bit that is getting "clocked out" will be stored in the output register
     end
 end
 
