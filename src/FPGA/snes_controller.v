@@ -4,6 +4,8 @@
 // For NES, lines are actually named d0, d2, and d3, respectively
 // For SNES, lines are actually named d0, d1, and I/O, respectively
 
+`include "shift_register.v"
+
 module snes_controller(
 	input clk,
 	input lat,
@@ -15,8 +17,8 @@ module snes_controller(
 	output d2
 );
 
-shift_register_32 sr0(clk, lat, data0, 1, d0);
-shift_register_32 sr1(clk, lat, data1, 1, d1);
-shift_register_32 sr2(clk, lat, data2, 1, d2);
+shift_register_32 sr0(clk, lat, data0, 1'b1, d0);
+shift_register_32 sr1(clk, lat, data1, 1'b1, d1);
+shift_register_32 sr2(clk, lat, data2, 1'b1, d2);
 
 endmodule

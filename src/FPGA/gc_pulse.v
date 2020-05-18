@@ -1,5 +1,6 @@
 // Ownasaurus
 // Designed to turn an input signal into a pulse that fits the N64/GC protocol
+// Assumes 48MHz sys_clk
 
 module gc_pulse(
 	input sys_clk,

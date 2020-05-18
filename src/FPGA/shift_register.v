@@ -10,12 +10,13 @@ module shift_register_8(
 );
 
 reg [7:0] bit_data;
+parameter line_high = 8'hFF;
 
 // initial state is all 1's
 // no buttons pressed means all bits high in (S)NES land
 initial begin
-    bit_data = 8'hF; 
-    bit_out = 1'b1;
+    bit_data = line_high;
+    bit_out = bit_data[7];
 end
 
 // handle the actual loading and shifting
@@ -38,12 +39,13 @@ module shift_register_16(
 );
 
 reg [15:0] bit_data;
+parameter line_high = 16'hFFFF;
 
 // initial state is all 1's
 // no buttons pressed means all bits high in (S)NES land
 initial begin
-    bit_data = 16'hFF; 
-    bit_out = 1'b1;
+    bit_data = line_high;
+    bit_out = bit_data[15];
 end
 
 // handle the actual loading and shifting
@@ -66,12 +68,13 @@ module shift_register_32(
 );
 
 reg [31:0] bit_data; // 32 bits wide to support peripherals such as SNES mouse
+parameter line_high = 32'hFFFFFFFF;
 
 // initial state is all 1's
 // no buttons pressed means all bits high in (S)NES land
 initial begin
-    bit_data = 32'hFFFF; 
-    bit_out = 1'b1;
+    bit_data = line_high;
+    bit_out = bit_data[31];
 end
 
 // handle the actual loading and shifting
@@ -94,12 +97,13 @@ module shift_register_64(
 );
 
 reg [63:0] bit_data; // 32 bits wide to support gamecube data width
+parameter line_high = 64'hFFFFFFFFFFFFFFFF;
 
 // initial state is all 1's
 // no buttons pressed means all bits high in (S)NES land
 initial begin
-    bit_data = 64'hFFFFFFFF; 
-    bit_out = 1'b1;
+    bit_data = line_high;
+    bit_out = bit_data[63];
 end
 
 // handle the actual loading and shifting

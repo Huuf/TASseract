@@ -6,7 +6,7 @@
 // give 16 6us clock pulses
 
 `timescale 10ns / 100ps
-`include "shift_register.v"
+`include "snes_controller.v"
 `include "gc_pulse.v"
 
 module main();
@@ -18,10 +18,10 @@ parameter cnt_latch_begin = 800000; // 16.667 ms
 parameter cnt_latch_end = cnt_latch_begin + 576; // 16.667ms + 12 us
 parameter cnt_half_clock = 288; // 6 us
 
-// confirm shift registers work
-wire d0;
-reg [31:0] data0;
-shift_register_32 sr0(snes_clk, snes_lat, data0, 1'b1, d0);
+// confirm SNES communication works
+wire d0, d1, d2;
+reg [31:0] data0, data1, data2;
+snes_controller sc(snes_clk, snes_lat, data0, data1, data2, d0, d1, d2);
 
 // confirm gc pulses work
 wire pulse1, pulse0, pulsestop;
@@ -32,6 +32,8 @@ gc_pulse gc_stop(sys_clk, snes_lat, 2'b11, pulsestop, transmittingstop);
 
 initial begin
 	data0 = 32'hAAAAFFFF;
+	data1 = 32'hFFFFFFFF;
+	data2 = 32'h0000FFFF;
 	snes_lat = 1'b0;
 	snes_clk = 1'b1;
 	counter_latch_begin = 0;
@@ -83,8 +85,8 @@ end
 always #1.04 sys_clk = !sys_clk;
 
 initial begin
- 	$display("\t\ttime,\tlat,\tclk\td0\tpulse1\tpulse0\tpulsestop");
- 	$monitor("%d,\t%b,\t%b,\t%b,\t%b,\t%b,\t%b",$time, snes_lat, snes_clk, d0, pulse1, pulse0, pulsestop);
+ 	$display("\t\ttime,\tlat,\tclk\td0\td1\td2\tpulse1\tpulse0\tpulsestop");
+ 	$monitor("%d,\t%b,\t%b,\t%b,\t%b,\t%b,\t%b,\t%b,\t%b",$time, snes_lat, snes_clk, d0, d1, d2, pulse1, pulse0, pulsestop);
  end 
 
 // stop simulation after about 1 second
