@@ -8,6 +8,7 @@
 `timescale 10ns / 100ps
 `include "snes_controller.v"
 `include "gc_pulse.v"
+`include "glitch_filter.v"
 
 module main();
 
@@ -18,10 +19,15 @@ parameter cnt_latch_begin = 800000; // 16.667 ms
 parameter cnt_latch_end = cnt_latch_begin + 576; // 16.667ms + 12 us
 parameter cnt_half_clock = 288; // 6 us
 
+// confirm glitch filtering works
+wire sys_clk_f, sys_lat_f;
+glitch_filter gf1(sys_clk, snes_lat, snes_lat_f);
+glitch_filter gf2(sys_clk, snes_clk, snes_clk_f);
+
 // confirm SNES communication works
 wire d0, d1, d2;
 reg [31:0] data0, data1, data2;
-snes_controller sc(snes_clk, snes_lat, data0, data1, data2, d0, d1, d2);
+snes_controller sc(snes_clk_f, snes_lat_f, data0, data1, data2, d0, d1, d2);
 
 // confirm gc pulses work
 wire pulse1, pulse0, pulsestop;
@@ -85,8 +91,8 @@ end
 always #1.04 sys_clk = !sys_clk;
 
 initial begin
- 	$display("\t\ttime,\tlat,\tclk\td0\td1\td2\tpulse1\tpulse0\tpulsestop");
- 	$monitor("%d,\t%b,\t%b,\t%b,\t%b,\t%b,\t%b,\t%b,\t%b",$time, snes_lat, snes_clk, d0, d1, d2, pulse1, pulse0, pulsestop);
+ 	$display("\t\ttime,\tlat_f,\tclk_f\td0\td1\td2\tpulse1\tpulse0\tpulsestop");
+ 	$monitor("%d,\t%b,\t%b,\t%b,\t%b,\t%b,\t%b,\t%b,\t%b",$time, snes_lat_f, snes_clk_f, d0, d1, d2, pulse1, pulse0, pulsestop);
  end 
 
 // stop simulation after about 1 second
